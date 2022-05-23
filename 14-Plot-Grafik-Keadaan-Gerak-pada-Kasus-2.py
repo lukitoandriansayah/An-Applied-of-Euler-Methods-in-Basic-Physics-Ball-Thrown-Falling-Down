@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-from Data_1_b_1 import df
 from Data_1_b_1 import df_euler_methods
 import matplotlib.pyplot as plt
 
@@ -47,5 +44,5 @@ plt.annotate('Percepatan saat mencapai \n'
              xytext=(43,3), weight='bold', color='blue',
              arrowprops=dict(arrowstyle='->',
                              connectionstyle='arc', color='blue'))
-plt.legend(bbox_to_anchor=(0.5, -0.5, 0.5, 2), loc='center right', title='Keterangan:')
+plt.legend(loc='center right', title='Keterangan:')
 plt.show()
