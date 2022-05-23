@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-from Data_1_a_1 import df
 from Data_1_a_1 import df_euler_methods
 import matplotlib.pyplot as plt
 
