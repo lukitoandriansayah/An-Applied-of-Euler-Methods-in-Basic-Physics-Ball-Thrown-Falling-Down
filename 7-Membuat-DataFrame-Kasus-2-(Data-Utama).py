@@ -1,3 +1,9 @@
+'''
+PERHATIAN!!!
+Silakan simpan file ini dengan nama Data_1_b_1 dengan format .py
+untuk mempermudah.
+'''
+
 import math as m
 import pandas as pd
 import numpy as np
@@ -23,6 +29,7 @@ t_total = m.sqrt(2*df_euler_methods['x'].loc[n-1]/a_0)
 t_df = t_total + 0.01
 dt = dt
 z = 2*n
+
 #Step1: Membuat kerangka data frame
 data =[t_0, x_0, v_0]
 data.append(a_0*(1-(data[2]**2/v_term**2)))
@@ -32,6 +39,7 @@ while z not in rows:
 index = np.array(rows)
 df = pd.DataFrame(columns=['t','x','v', 'a'], index= index)
 df.loc[0] = data
+
 #Step2: Melengkapi Kerangka Dataframe
 i = 1
 while np.isnan(df['t'].loc[i]).sum() > 0 and i < z:
@@ -43,13 +51,11 @@ while np.isnan(df['t'].loc[i]).sum() > 0 and i < z:
 df_euler_methods = df.dropna(axis=0)
 df_euler_methods.to_csv('Data Frame Nomor 1_b_1.csv', index=False, encoding='utf-8', quoting=1)
 
-# import the module
+#Step3: Mengimport DataFrame ke dalam DataBase
 from sqlalchemy import create_engine
 import pymysql
 import mysql
-# create sqlalchemy engine
 engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                       .format(user="***", pw="***",
                       db="Euler_Methods"))
-# Insert whole DataFrame into MySQL
 df_euler_methods.to_sql('Euler_Method_No_1_b_1', con = engine, if_exists = 'append', chunksize = 1000,index=False)
