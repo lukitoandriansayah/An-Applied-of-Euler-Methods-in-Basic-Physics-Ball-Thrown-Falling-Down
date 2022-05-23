@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-from Data_1_a_1 import df
 from Data_1_a_1 import df_euler_methods
 import matplotlib.pyplot as plt
 
@@ -22,6 +19,7 @@ plt.grid(color = 'darkgray', linestyle = ':',
          linewidth = 0.5)
 plt.xlim(xmin=0)
 plt.ylim(ymin=0)
+
 plt.text(7, 35, '41.20349480771995 m/s \n'
                          '(~ 41.2035 m/s)',
          color = 'red', weight = 'bold')
