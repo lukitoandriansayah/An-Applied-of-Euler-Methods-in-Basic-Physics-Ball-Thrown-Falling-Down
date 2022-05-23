@@ -1,6 +1,13 @@
+"""
+Perhatian!!!
+Silakan simpan file in dengan nama Data_1_a_2 dengan format .py
+untuk memudahkan.
+"""
+
+
 import pandas as pd
 import numpy as np
-from Data_1_a_1 import n                           #Mengimport jumlah baris dari file sebelumnya sebagai acauan
+from Data_1_a_1 import n                           #Meng-import jumlah baris dari file sebelumnya sebagai acauan
 
 """
 Known Variables in SI units for Case 1
@@ -8,8 +15,7 @@ with different time interval
 """
 v_0 = 35 * (1000/3600)
 v_term = 150 * (1000/3600)
-t_total = float(10)                         #t_total di sini adalah waktu yang diketahui dalam data
-                                            #bukan waktu secara keseluruhan
+t_total = float(10)                         #t_total di sini adalah waktu yang diketahui dalam data bukan waktu secara keseluruhan
 t_df = t_total + 0.01                       #Penggunaan 0.01 optional
 """
 Using Methode Euler
@@ -18,7 +24,8 @@ t_0 = 0
 x_0 = 0
 a_0 = float(9.81)                           #variabel a_0 disini merupakan nilai percepatan gravitasi bumi
 dt = (6 * t_df) / (2 * n)                   #Penggunaan angka 2 untuk membuat selang waktu menjadi setengahnya, ini lebih direkomendasikan.
-l = int(6 * t_df / dt)                      #Variabel l ini akan menjadi acuan jumlah baris dataframe yang ingi dibuat
+l = int(6 * t_df / dt)                      #Variabel l ini akan menjadi acuan jumlah baris dataframe yang ingin dibuat
+
 #Step1: Membuat kerangka data frame
 data =[t_0, x_0, v_0]
 data.append(a_0*(1-(data[2]**2/v_term**2)))
@@ -28,6 +35,7 @@ while l not in rows:
 index = np.array(rows)
 df = pd.DataFrame(columns=['t','x','v','a'], index= index)
 df.loc[0] = data
+
 #Step2: Melengkapi Kerangka Dataframe
 i = 1
 while np.isnan(df['t'].loc[i]).sum() > 0 and i < l:
@@ -39,13 +47,11 @@ while np.isnan(df['t'].loc[i]).sum() > 0 and i < l:
 df_euler_methods = df.dropna(axis=0)
 df_euler_methods.to_csv('Data Frame Nomor 1_a_2.csv', index=False, encoding='utf-8', quoting=1)
 
-# import the module
+#Step3: Mengimport data ke dalam DataBase MySQL
 from sqlalchemy import create_engine
 import pymysql
 import mysql
-# create sqlalchemy engine
 engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                       .format(user="***", pw="***",
                       db="Euler_Methods"))      # Ubah *** sesuai karakter MySQL masing-masing
-# Insert whole DataFrame into MySQL
 df_euler_methods.to_sql('Euler_Method_No_1_a_2', con = engine, if_exists = 'append', chunksize = 1000,index=False)
