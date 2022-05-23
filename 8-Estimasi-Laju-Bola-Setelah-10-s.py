@@ -1,10 +1,10 @@
 """
-Berapa estimasi laju setelah 10 detik
+Berapa estimasi laju setelah 10 detik?
 """
 import mysql.connector as msql
 # Execute query
-conn = msql.connect(host='localhost', user='root',
-                         password='V-k21122015', db="Euler_Methods")
+conn = msql.connect(host='***', user='***',
+                         password='***', db="Euler_Methods")   #Ubah *** sesuai karakter MySQL massing-masing
 cursor = conn.cursor()
 v_after_10_s = "SELECT distinct " \
                "em1a1.v " \
