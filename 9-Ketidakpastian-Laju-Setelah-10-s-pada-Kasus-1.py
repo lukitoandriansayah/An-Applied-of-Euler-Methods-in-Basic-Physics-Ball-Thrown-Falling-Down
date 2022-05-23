@@ -1,10 +1,12 @@
 """
-Berapa Ketidakpastian kecepatan setalah 10 detik berdasarkan dua data tersebut?
+Berapa Ketidakpastian laju setalah 10 detik tersebut?
+
+Untuk meneyelesaikan ini, kita bandingkan data utama dengan data pembanding.
 """
 import mysql.connector as msql
 # Execute query
-conn = msql.connect(host='localhost', user='root',
-                         password='V-k21122015', db="Euler_Methods")
+conn = msql.connect(host='***', user='***',
+                         password='***', db="Euler_Methods")      #Ubah *** sesuai karakter MySQL masing-masing
 cursor = conn.cursor()
 v_after_10_s = "SELECT distinct " \
                "em1a1.v," \
